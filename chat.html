@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html class="fill-vertical" lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat alkalmazás</title>
+
+    <!-- Importáljuk a Bootstrapet-->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="chat.css">
+
+</head>
+<body class="fill-vertical">
+<!-- Bejelentkező képernyő -->
+<div id="login-window" class="container login-window">
+    <div class="jumbotron">
+        <h1>BI Labor NoSQL Chat</h1>
+        <p>Üdv a BI Labor keretében elkészítendő chat alkalmazásban, ami a különböző NoSQL adatbázisok működését
+            demonstrálja, egy kis ízelítővel Electron-ból.</p>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
+        </div>
+        <input id="usernameInput" type="text" class="form-control" placeholder="Felhasználónév">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-fw fa-server"></i></span>
+        </div>
+        <input id="serverInput" type="text" class="form-control" placeholder="Szerver IP">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-fw fa-server"></i></span>
+        </div>
+        <input id="avatarURL" type="text" class="form-control" placeholder="Avatar URL">
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-primary" onclick="chatController.login()"><i class="fa fa-fw fa-sign-in"></i>Bejelentkezés
+        </button>
+    </div>
+</div>
+<!-- Chat képernyő -->
+<div id="main-window" class="container-fluid p-0 app-window" style="display:none">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand navbar-dark bg-dark chat-nav">
+        <a class="navbar-brand" href="#">
+            <img src="assets/logo.png" width="100" height="36" alt="BME Aut" class="d-inline-block align-top">
+            <span class="align-middle">BI NoSQL Labor Chat alkalmazás</span>
+        </a>
+    </nav>
+
+    <!-- Chat terület -->
+    <div class="row chat-body">
+        <!-- Felhasználók oszlop -->
+        <div class="col-md-4">
+            <div class="selector-panel">
+                <div class="selector-panel-header">
+                    <span id="username"></span>
+                </div>
+                <div class="selector-panel-body">
+
+                    <b>Csatornák</b>
+                    <ul id="channel-list">
+                        <!--Rooms-->
+                    </ul>
+
+                    <b>Felhasználók</b>
+                    <ul id="user-list">
+                        <!-- Ide jönnek a felhasználók -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Középső sáv (üzenetek + üzenet írás) -->
+        <div class="col-md-8 messages-panel">
+
+            <!-- Eddigi üzenetek a szobában -->
+            <div id="messages-panel" class="row messages-panel-history">
+                <div id="messages" class="messages">
+                    <!-- Ide jönnek majd az üzenetek -->
+                </div>
+            </div>
+
+            <!-- Új üzenet írása -->
+            <div class="row messages-panel-new">
+                <div class="input-group">
+                    <textarea id="new-message-text" class="form-control" aria-label="With textarea"></textarea>
+                    <div class="input-group-append">
+                        <button class="btn btn-success" onclick="chatController.sendMessage()">Küldés <i
+                                class="fa fa-fw fa-send"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const chatController = require('./chat-controller.js');
+    const chatService = require('./chat-service.js');
+
+    window.onbeforeunload = function () {
+        chatService.disconnect();
+    }
+</script>
+</body>
+</html>

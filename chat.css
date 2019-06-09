@@ -1,0 +1,94 @@
+/* A Bootstrap containerrül elvesszük a paddingot (jobban néz ki így desktopon) */
+.container-fluid{
+    overflow: hidden;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+/* Segédosztály a maximális függőleges kitöltéshez */
+.fill-vertical {
+    height: 100%;
+}
+
+.login-window {
+    height: 100%;
+}
+
+/* A teljes chat alkalmazásunk ablaka */
+.app-window {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.chat-nav {
+    flex-shrink: 0;
+    height: 45px;
+}
+
+/* A felhasználók, üzenetek és új üzenet írása rész (minden a header alatt) */
+.chat-body {
+    flex-grow: 1;
+}
+
+.selector-panel {
+    background-color: darkgray;
+    height: 100%;
+}
+
+.selector-panel-header {
+    text-align: center;
+    font-weight: bold;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.selector-panel-body {
+    background-color: lightgray;
+    height: 100%;
+    padding: 8px;
+    overflow-y: auto;
+}
+
+.selector-panel-item:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.messages-panel {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    padding-top: 8px;
+}
+
+.messages-panel-history {
+    flex-grow: 3;
+    height: 100%;
+    padding-left: 23px;
+    padding-right: 23px;
+    overflow-y: scroll;
+}
+
+.messages {
+    width: 100%;
+}
+
+.message-avatar {
+    border-width: 1px;
+    border-style: solid;
+    border-color: lightgray;
+}
+
+.messages-panel-new {
+    flex-grow: 1;
+    margin: 8px;
+}
+
+.messages-new-input {
+    width: 100px;
+}
+
+textarea {
+    resize: none;
+}
