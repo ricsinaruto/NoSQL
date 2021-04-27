@@ -21,7 +21,7 @@
     "bootstrap": "^4.2.1",
     "font-awesome": "^4.7.0",
     "mongoose": "^5.4.11",
-    "redis": "^2.8.0"
+    "redis": "^3.1.1"
   },
   "devDependencies": {
     "electron": "^4.0.3"
